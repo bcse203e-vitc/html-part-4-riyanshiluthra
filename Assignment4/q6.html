@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Survey</title>
+</head>
+<body>
+    <h2>Health Survey Form</h2>
+    <form>
+        <label>Name:</label>
+        <input type="text" name="name"><br><br>
+
+        <label>Age:</label>
+        <input type="number" name="age"><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female<br><br>
+
+        <label>Height (cm):</label>
+        <input type="number" name="height"><br><br>
+
+        <label>Weight (kg):</label>
+        <input type="number" name="weight"><br><br>
+
+        <label>Dietary Preference:</label>
+        <select name="diet">
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+        </select><br><br>
+
+        <label>Activity Level:</label>
+        <select name="activityLevel">
+            <option value="Sedentary">Sedentary</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Active">Active</option>
+        </select><br><br>
+
+        <label>Lifestyle:</label><br>
+        <input type="checkbox" name="lifestyle" value="Smoking"> Do you smoke?<br>
+        <input type="checkbox" name="lifestyle" value="Alcohol"> Do you drink alcohol?<br>
+        <input type="checkbox" name="lifestyle" value="Exercise"> Do you exercise regularly?<br><br>
+
+        <label>Health Concerns (Optional):</label><br>
+        <textarea name="healthConcerns"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

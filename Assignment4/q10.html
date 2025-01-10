@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Form Template</title>
+    <style>
+        .form-preview {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .form-preview input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .form-preview label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Customizable Form Generator</h2>
+
+    <form id="formSettings">
+        <label for="formName">Form Name:</label>
+        <input type="text" id="formName" name="formName" placeholder="Enter form name" aria-label="Form Name" required><br><br>
+
+        <label for="numFields">Number of Input Fields:</label>
+        <input type="number" id="numFields" name="numFields" min="1" max="10" placeholder="Enter number of fields" aria-label="Number of Input Fields" required><br><br>
+
+        <div id="fieldsSettings"></div>
+
+        <button type="button" id="generateForm" aria-label="Generate Form">Generate Form</button>
+    </form>
+
+    <div class="form-preview" id="formPreview">
+        <h3 id="formTitle"></h3>
+        <form id="previewForm"></form>
+    </div>
+
+    <script>
+        document.getElementById('numFields').addEventListener('input', generateFieldSettings);
+
+        function generateFieldSettings() {
+            const numFields = document.getElementById('numFields').value;
+            const fieldsSettingsContainer = document.getElementById('fieldsSettings');
+            fieldsSettingsContainer.innerHTML = '';
+
+            for (let i = 0; i < numFields; i++) {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.innerHTML = `
+                    <h4>Field ${i + 1}</h4>
+                    <label for="fieldType${i}">Field Type:</label>
+                    <select id="fieldType${i}" name="fieldType${i}" aria-label="Field Type ${i + 1}">
+                        <option value="text">Text</option>
+                        <option value="email">Email</option>
+                        <option value="number">Number</option>
+                        <option value="date">Date</option>
+                    </select><br><br>
+
+                    <label for="fieldLabel${i}">Field Label:</label>
+                    <input type="text" id="fieldLabel${i}" name="fieldLabel${i}" placeholder="Enter label" aria-label="Field Label ${i + 1}" required><br><br>
+                `;
+                fieldsSettingsContainer.appendChild(fieldDiv);
+            }
+        }
+
+        document.getElementById('generateForm').addEventListener('click', generatePreview);
+
+        function generatePreview() {
+            const formName = document.getElementById('formName').value;
+            document.getElementById('formTitle').textContent = formName || 'Custom Form Preview';
+
+            const numFields = document.getElementById('numFields').value;
+            const previewForm = document.getElementById('previewForm');
+            previewForm.innerHTML = '';
+
+            for (let i = 0; i < numFields; i++) {
+                const fieldType = document.getElementById(`fieldType${i}`).value;
+                const fieldLabel = document.getElementById(`fieldLabel${i}`).value;
+
+                const fieldDiv = document.createElement('div');
+                fieldDiv.innerHTML = `
+                    <label for="inputField${i}">${fieldLabel || 'Field ' + (i + 1)}</label>
+                    <input type="${fieldType}" id="inputField${i}" name="inputField${i}" placeholder="Enter ${fieldLabel || 'value'}" aria-label="${fieldLabel || 'Field ' + (i + 1)}" ${fieldType === 'number' ? 'min="1" max="100"' : ''} ${fieldType === 'email' ? 'pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"' : ''} required><br><br>
+                `;
+                previewForm.appendChild(fieldDiv);
+            }
+        }
+
+        generateFieldSettings();
+    </script>
+</body>
+</html>

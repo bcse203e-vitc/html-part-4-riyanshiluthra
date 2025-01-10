@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Form</title>
+</head>
+<body>
+    <h2>Hotel Booking Form</h2>
+    <form id="bookingForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="contact">Contact Info:</label>
+        <input type="text" id="contact" name="contact" required><br><br>
+
+        <label for="checkin">Check-in Date:</label>
+        <input type="date" id="checkin" name="checkin" required><br><br>
+
+        <label for="checkout">Check-out Date:</label>
+        <input type="date" id="checkout" name="checkout" required><br><br>
+
+        <label for="guests">Number of Guests:</label>
+        <input type="number" id="guests" name="guests" value="1" min="1" required><br><br>
+
+        <label for="roomType">Room Type:</label>
+        <select id="roomType" name="roomType" required>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Suite">Suite</option>
+        </select><br><br>
+
+        <label>Additional Services:</label><br>
+        <input type="checkbox" id="breakfast" name="services" value="Breakfast"> Breakfast<br>
+        <input type="checkbox" id="pickup" name="services" value="Airport Pickup"> Airport Pickup<br><br>
+
+        <label>Total Cost:</label>
+        <div id="totalCost">Total: $0</div><br><br>
+
+        <button type="submit">Book Now</button>
+    </form>
+
+    <script>
+        const roomPrices = {
+            "Single": 100,
+            "Double": 150,
+            "Suite": 250
+        };
+        const servicePrices = {
+            "Breakfast": 20,
+            "Airport Pickup": 40
+        };
+
+        function calculateTotal() {
+            const roomType = document.getElementById('roomType').value;
+            const numGuests = parseInt(document.getElementById('guests').value);
+            const selectedServices = document.querySelectorAll('input[name="services"]:checked');
+            let total = roomPrices[roomType] * numGuests;  
+
+            selectedServices.forEach(service => {
+                total += servicePrices[service.value] || 0;  
+            });
+
+            document.getElementById('totalCost').textContent = `Total: $${total}`;
+        }
+
+        document.getElementById('guests').addEventListener('input', calculateTotal);
+        document.getElementById('roomType').addEventListener('change', calculateTotal);
+        document.querySelectorAll('input[name="services"]').forEach(service => {
+            service.addEventListener('change', calculateTotal);
+        });
+
+        calculateTotal(); 
+    </script>
+</body>
+</html>
