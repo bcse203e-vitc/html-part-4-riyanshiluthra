@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Event Registration</title>
+</head>
+<body>
+    <h2>Online Event Registration</h2>
+    <form action="submit_form.php" method="POST">
+        <!-- Full Name -->
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com"><br><br>
+
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required placeholder="(XXX) XXX-XXXX"><br><br>
+
+        <!-- Gender -->
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other" required>
+        <label for="other">Other</label><br><br>
+
+        <!-- Age Group -->
+        <label for="ageGroup">Age Group:</label>
+        <select id="ageGroup" name="ageGroup" required>
+            <option value="18-25">18-25</option>
+            <option value="26-35">26-35</option>
+            <option value="36-45">36-45</option>
+            <option value="46+">46+</option>
+        </select><br><br>
+
+        <!-- Topics of Interest -->
+        <label>Topics of Interest:</label><br>
+        <input type="checkbox" id="topic1" name="topics[]" value="Technology">
+        <label for="topic1">Technology</label><br>
+        <input type="checkbox" id="topic2" name="topics[]" value="Health">
+        <label for="topic2">Health</label><br>
+        <input type="checkbox" id="topic3" name="topics[]" value="Business">
+        <label for="topic3">Business</label><br>
+        <input type="checkbox" id="topic4" name="topics[]" value="Education">
+        <label for="topic4">Education</label><br><br>
+
+        <!-- Additional Comments -->
+        <label for="comments">Additional Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Any additional information or questions?"></textarea><br><br>
+
+        <!-- Register Button -->
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
